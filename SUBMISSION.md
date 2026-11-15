@@ -3,6 +3,18 @@
 
 > This project is a prototype and is not financial advice.
 
+**Live demo:** <https://observely.vercel.app/> · **Code:** [public source repository](https://github.com/shaivsaga/observely-submission)
+
+## The problem
+
+A relative gets a text with a link or an urgent request and asks, "Is this a scam, and why?" Observely warns and shows which signals contributed, so the reader can learn the pattern and not just see a verdict.
+
+## In plain words
+
+We tested a standard scam-text filter on a second public dataset and found that 84% of its messages were exact copies of the first dataset. On the 655 genuinely new messages the filter caught 69% of scams, against 87% on the held-out test messages of its own dataset, and we report that drop without retuning. Observely is a separate demo that warns about a text and shows which warning signs fired.
+
+Key: D1 is the UCI SMS Spam Collection, D2 is the Mishra and Soni SMS Phishing Dataset, M1 is the standard filter we tested (TF-IDF with logistic regression), and A0 is the filter bundled in the demo and Android app.
+
 ## The finding
 
 Frozen M1 reached **0.692 recall, with 7 false alarms and 97 misses** on 655 deduplicated D2 messages (218 true positives, 333 true negatives). Recall was 0.87 on D1 test. The 17.5-point drop exceeded the 10-point limit set in advance. The M1 cutoff stayed fixed at 0.630.
@@ -24,6 +36,12 @@ D1 is the UCI SMS Spam Collection. We removed 403 exact repeats from 5,574 messa
 | M1, cutoff 0.630 | 0.969 | 0.692 | 7 | 97 |
 
 M1's reported 95% intervals were 0.94–0.99 for precision and 0.64–0.74 for recall. The exploratory score before D2 deduplication was about 0.97 precision and 0.87 recall. A collection check comparing normal D1 and D2 messages gave AUC 0.804, below the preset 0.9 threshold. M1 flagged 0/72 very short normal messages, 1/34 with numbers or currency, and 3/91 with informal slang. The normal-message buckets for links (2 messages) and all caps (9) were too small to report a rate.
+
+**Two cautions on these numbers.** Deduplication removes the D2 messages most like D1 by construction, so the 0.804 AUC is partly built in, and this test does not separate changes in scam style from differences in how the datasets were collected. Precision also depends on how common scams are: about 13% of D1 test messages are scams versus 48% of clean D2 (315 of 655), so compare recall across the two datasets, not precision.
+
+## Secondary results
+
+These two checks are separate from the frozen M1 test above.
 
 **Original A0 sanity check.** A0 used the same weights as M1, a 0.51 cutoff, and an override when at least two of eight rules matched. On clean D2 it reached **0.867 recall, with 6 false alarms and 42 misses** (0.978 precision). Part of clean D2 informed A0 cutoff selection. The comparison with M1 changes both the cutoff and the rules. This snapshot ships a sanitized A0 derivative with nine phone-number vocabulary entries removed. A comparison on all 655 clean-D2 messages found zero changed warning decisions (273 true positives, 334 true negatives, 6 false positives and 42 false negatives for both versions). Seven scores changed.
 
