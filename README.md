@@ -1,4 +1,3 @@
-
 # Observely
 
 Observely is a Finance-track hackathon prototype that warns about suspicious SMS text and shows the words or rules behind the warning. The browser scores pasted text locally. The Android prototype scores message previews from supported notifications. This project is a prototype and is not financial advice.
