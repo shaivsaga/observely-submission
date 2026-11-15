@@ -65,5 +65,5 @@ The reported metrics apply to these datasets. The app can miss spam and flag ord
 - [UCI SMS Spam Collection, Almeida and Hidalgo](https://archive.ics.uci.edu/dataset/228/sms%2Bspam%2Bcollection).
 - [SMS Phishing Dataset, Mishra and Soni, version 1](https://data.mendeley.com/datasets/f45bkkt8pr/1).
 - Historical hosted-model comparison used NVIDIA NIM's Nemotron 3.5 Lightning 30B A3B. The shipped apps run locally using React, Vite and Jetpack Compose. scikit-learn, pandas and NumPy supported the historical evaluation.
-- AI assistance included Claude Sonnet 5.5, DeepSeek V4.1 Flash, GPT-6 Luna, GPT-6 Sol and Gemini 4 Hydrogen. Google AI Studio and NVIDIA NIM supported model access. Playwright and FFmpeg supported demo production.
+- AI assistance included Claude Sonnet 5.5, DeepSeek V4.1 Flash, GPT-6 Luna, GPT-6 Sol, GPT-6.1 Sol and Gemini 4 Hydrogen. Google AI Studio and NVIDIA NIM supported model access. Playwright and FFmpeg supported demo production.
 - See the [README](README.md) for the reproducible web build and the [Android guide](ANDROID.md) for the native build.
