@@ -46,20 +46,21 @@ function schedulePingTone(ctx: AudioContext) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    // Subtle low-frequency instrumentation pulse (190Hz -> 145Hz over 55ms)
+    // Short, soft ping (880Hz -> 660Hz over 90ms). Laptop and phone speakers
+    // cannot reproduce much below 250Hz, so the pitch sits in the audible range.
     osc.type = "sine";
-    osc.frequency.setValueAtTime(190, now);
-    osc.frequency.exponentialRampToValueAtTime(145, now + 0.055);
+    osc.frequency.setValueAtTime(880, now);
+    osc.frequency.exponentialRampToValueAtTime(660, now + 0.09);
 
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.linearRampToValueAtTime(0.025, now + 0.008);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+    gain.gain.linearRampToValueAtTime(0.08, now + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start(now);
-    osc.stop(now + 0.065);
+    osc.stop(now + 0.11);
   } catch {
     // Ignore audio synthesis errors in restricted contexts
   }
