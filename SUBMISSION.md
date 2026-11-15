@@ -41,6 +41,9 @@ The reported metrics apply to these datasets. The app can miss spam and flag ord
 
 ## Sources and code
 
+[Public source repository](https://github.com/shaivsaga/observely-submission).
+
+
 - [UCI SMS Spam Collection, Almeida and Hidalgo](https://archive.ics.uci.edu/dataset/228/sms%2Bspam%2Bcollection).
 - [SMS Phishing Dataset, Mishra and Soni, version 1](https://data.mendeley.com/datasets/f45bkkt8pr/1).
 - Historical hosted-model comparison used NVIDIA NIM's Nemotron 3.5 Lightning 30B A3B. The shipped apps run locally using React, Vite and Jetpack Compose. scikit-learn, pandas and NumPy supported the historical evaluation.

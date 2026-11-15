@@ -5,6 +5,8 @@ Observely is a Finance-track hackathon prototype that warns about suspicious SMS
 
 Frozen M1 reached **0.692 recall, with 7 false alarms and 97 misses** on deduplicated D2. Original A0 had a separate, dataset-specific sanity check at **0.867 recall, with 6 false alarms and 42 misses**. See the [submission write-up](SUBMISSION.md) for the baselines, methodology and limitations.
 
+[Public source repository](https://github.com/shaivsaga/observely-submission).
+
 ## Run the web app
 
 Install Node.js and npm. Install Bun to run the test suite. This snapshot was checked with Node.js 24 and Bun 1.4.
