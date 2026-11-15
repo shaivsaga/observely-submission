@@ -1,0 +1,86 @@
+{
+  "demo": [
+    {
+      "kind": "model_fires",
+      "label": "scam",
+      "predicted": "scam",
+      "score": 0.976,
+      "trigger": "model",
+      "signs": [
+        "a prize or free item"
+      ],
+      "text": "You WON a free prize. Claim your reward now.",
+      "note": "Synthetic prize lure. The model score crosses the cutoff."
+    },
+    {
+      "kind": "override_fires",
+      "label": "scam",
+      "predicted": "scam",
+      "score": 0.3736,
+      "trigger": "override",
+      "signs": [
+        "pressure to act now",
+        "account locked, confirm details"
+      ],
+      "text": "Final notice: your account is suspended. The statement is still available at the branch.",
+      "note": "Synthetic suspension lure. Two rules trigger a warning below the model cutoff."
+    },
+    {
+      "kind": "false_alarm",
+      "label": "not_scam",
+      "predicted": "scam",
+      "score": 0.627,
+      "trigger": "model",
+      "signs": [],
+      "text": "Your account has been refilled successfully. Your prepaid account balance is shown on the receipt.",
+      "note": "Synthetic normal account update. The model still warns."
+    },
+    {
+      "kind": "missed_scam",
+      "label": "scam",
+      "predicted": "not_scam",
+      "score": 0.1313,
+      "trigger": "none",
+      "signs": [],
+      "text": "Leaflets for a furniture sale are at the library desk.",
+      "note": "Synthetic unsolicited advertisement. The classifier stays quiet."
+    }
+  ],
+  "edge": [
+    {
+      "kind": "long_600",
+      "label": "scam",
+      "predicted": "scam",
+      "score": 0.9131,
+      "trigger": "model",
+      "signs": [
+        "a prize or free item"
+      ],
+      "text": "Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now. Your free prize is ready. Claim it now.",
+      "note": "Synthetic long-message display test."
+    },
+    {
+      "kind": "trailing_url",
+      "label": "scam",
+      "predicted": "scam",
+      "score": 0.8324,
+      "trigger": "model",
+      "signs": [
+        "a prize or free item",
+        "a link to tap"
+      ],
+      "text": "Get your free prize at https://example.invalid",
+      "note": "Synthetic trailing URL. The destination is reserved and non-resolving."
+    },
+    {
+      "kind": "emoji",
+      "label": "not_scam",
+      "predicted": "not_scam",
+      "score": 0.2169,
+      "trigger": "none",
+      "signs": [],
+      "text": "😀 The picnic moved to the park.",
+      "note": "Synthetic message with an emoji prefix."
+    }
+  ]
+}

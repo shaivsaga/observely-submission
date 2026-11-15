@@ -1,0 +1,5 @@
+{
+  "name": "Observely",
+  "description": "Paste a text message and see Observely's bundled warning classifier, inline evidence reading, and cutoff gauge run in the browser.",
+  "requestFramePermissions": []
+}

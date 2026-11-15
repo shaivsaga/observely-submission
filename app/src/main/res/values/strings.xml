@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Observely</string>
+    <string name="notification_access_service_label">Observely message warnings</string>
+    <string name="notification_access_service_description">Observely reads notification text from a fixed set of SMS and chat apps to warn you about possible scams. It never stores, sends, blocks or deletes messages.</string>
+
+    <string name="tagline">Get a warning when a text message looks like a scam. Observely only warns. It never blocks or deletes anything, and your texts never leave this phone.</string>
+    <string name="setup_heading">Setup</string>
+    <string name="summary_not_ready">Warnings are not fully on yet.</string>
+    <string name="summary_ready">Warnings are on.</string>
+    <string name="summary_detail_not_ready">Finish each step marked off below. Observely will not claim alerts are on until every step is allowed.</string>
+    <string name="summary_detail_ready">Observely will only warn when the phone lets it post a notification.</string>
+
+    <string name="setup_listener_title">1. Message notification access</string>
+    <string name="setup_listener_detail">Android calls this Notification access. It is broad, but Observely only processes notifications from a fixed set of apps: the built-in SMS apps, WhatsApp, Telegram, Messenger, Signal, Viber and LINE. Alerts only work when those notifications include the message text.</string>
+    <string name="setup_listener_on">On — notification access is allowed.</string>
+    <string name="setup_listener_off">Off — notification access is not allowed.</string>
+    <string name="setup_listener_action_on">Open notification access</string>
+    <string name="setup_listener_action_off">Turn on notification access</string>
+
+    <string name="setup_permission_title">2. Warning-notification permission</string>
+    <string name="setup_permission_detail">Android 13 and newer ask for permission before an app can post notifications. On older versions this step is not needed.</string>
+    <string name="setup_permission_not_required">Not needed — this Android version does not ask for this permission.</string>
+    <string name="setup_permission_granted">Allowed — Android permits Observely to post warning notifications.</string>
+    <string name="setup_permission_denied">Not allowed — Android blocks Observely from posting warning notifications.</string>
+    <string name="setup_permission_action">Allow warning notifications</string>
+    <string name="setup_notification_settings_action">Open notification settings</string>
+
+    <string name="setup_app_notifications_title">3. Observely notifications</string>
+    <string name="setup_app_notifications_detail">Android can still block all notifications from Observely, even when notification access is on.</string>
+    <string name="setup_app_notifications_on">On — Observely notifications are allowed.</string>
+    <string name="setup_app_notifications_off">Off — Android is blocking all Observely notifications.</string>
+
+    <string name="setup_channel_title">4. Warning channel</string>
+    <string name="setup_channel_detail">Observely warns through one notification channel. It is created after notification access is turned on.</string>
+    <string name="setup_channel_ready">On — the warning channel is allowed.</string>
+    <string name="setup_channel_not_created">Not set up yet — turn on notification access first.</string>
+    <string name="setup_channel_blocked">Off — the warning channel is blocked.</string>
+    <string name="setup_channel_action">Open warning channel settings</string>
+
+    <string name="about_heading">About this prototype</string>
+    <string name="about_prototype">Observely is an offline prototype. Its warning classifier is bundled with a 0.51 cutoff and a two-warning-sign rule. It is not independently validated and it does not guarantee safety. It is not the evaluated M1 decision, which used a 0.630 cutoff.</string>
+    <string name="about_sources">Supported sources: built-in SMS apps (Google Messages, Samsung Messages and similar), WhatsApp, Telegram, Messenger, Signal, Viber and LINE. A warning only appears when one of those notifications exposes the message text.</string>
+    <string name="about_privacy">Messages are checked on this phone and are never stored, logged, uploaded, blocked, or deleted.</string>
+    <string name="settings_unavailable">Could not open these settings. Open Android Settings, then Notifications, then Device and app notifications manually.</string>
+
+    <string name="warning_channel_name">Scam warnings</string>
+    <string name="status_off">Off</string>
+</resources>

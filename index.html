@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Observely</title>
+    <meta name="description" content="Paste a text message and see Observely's bundled warning classifier, inline evidence reading, and cutoff gauge run in the browser." />
+    <meta property="og:title" content="Observely" />
+    <meta property="og:description" content="Paste a text message and see Observely's bundled warning classifier, inline evidence reading, and cutoff gauge run in the browser." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0A0D0C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F3EC" media="(prefers-color-scheme: light)" />
+    <script>
+      // data-theme before first paint; saved user choice wins, else dark instrumentation default.
+      var t = null;
+      try { t = localStorage.getItem("observely-theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") t = "dark";
+      document.documentElement.dataset.theme = t;
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

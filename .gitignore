@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.gradle/
+**/build/
+local.properties
+.idea/
+__pycache__/
+.env
+.env.*
+*.apk
+*.aab
+*.jks
+*.keystore
+*.hprof

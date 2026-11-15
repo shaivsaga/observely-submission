@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="observely_green">#1F7A4D</color>
+    <color name="observely_bar">#14502F</color>
+    <color name="observely_surface">#F7FBF8</color>
+    <color name="observely_on_surface">#10231A</color>
+    <color name="observely_muted">#44594E</color>
+    <color name="observely_ok">#1F7A4D</color>
+    <color name="observely_warn">#8A4B00</color>
+    <color name="observely_off">#7A2E2E</color>
+    <color name="observely_summary">#E4F2EA</color>
+</resources>

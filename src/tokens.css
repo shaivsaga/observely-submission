@@ -1,0 +1,117 @@
+:root {
+  color-scheme: dark;
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-display: clamp(2.5rem, 4.2vw + 0.75rem, 4.375rem);
+  --text-lead: clamp(1rem, 0.4vw + 0.9rem, 1.1875rem);
+  --text-verdict: clamp(1.85rem, 2.2vw + 0.9rem, 2.65rem);
+  --text-score: clamp(2.25rem, 3vw + 0.75rem, 3.25rem);
+  --text-statement: clamp(1.375rem, 1.4vw + 1rem, 1.75rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 140ms;
+  --dur-short: 240ms;
+  --dur-long: 400ms;
+
+  --container: 1440px;
+  --gutter: 56px;
+  --gap-columns: 32px;
+
+  --font-display: "Schibsted Grotesk", ui-sans-serif, sans-serif;
+  --font-body: "Instrument Sans", ui-sans-serif, sans-serif;
+  --font-outlier: "DM Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --tracking-display: -0.035em;
+
+  --radius-card: 10px;
+  --radius-input: 8px;
+  --radius-pill: 999px;
+
+  /* Dark instrumentation defaults */
+  --color-paper: oklch(14% 0.01 168);
+  --color-paper-2: oklch(18.5% 0.014 166);
+  --color-paper-3: oklch(23% 0.017 166);
+  --color-ink: oklch(94.5% 0.014 88);
+  --color-ink-2: oklch(82% 0.014 92);
+  --color-muted: oklch(69% 0.014 165);
+  --color-rule: oklch(28.5% 0.018 165);
+  --color-border-strong: oklch(42% 0.02 165);
+  --color-accent: oklch(80% 0.14 155);
+  --color-accent-deep: oklch(85% 0.12 155);
+  --color-accent-soft: oklch(24% 0.045 158);
+  --color-accent-ink: oklch(14% 0.012 168);
+  --color-cyan: oklch(83% 0.11 190);
+  --color-cyan-soft: oklch(24% 0.04 190);
+  --color-focus: oklch(83% 0.14 155);
+  --color-alarm: oklch(71% 0.19 27);
+  --color-alarm-soft: oklch(18.5% 0.036 27);
+  --color-alarm-rule: oklch(39% 0.095 27);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-paper: oklch(96.5% 0.011 88);
+  --color-paper-2: oklch(93.8% 0.014 90);
+  --color-paper-3: oklch(90.5% 0.016 95);
+  --color-ink: oklch(20% 0.022 170);
+  --color-ink-2: oklch(31% 0.02 170);
+  --color-muted: oklch(46% 0.02 165);
+  --color-rule: oklch(83% 0.015 95);
+  --color-border-strong: oklch(60% 0.018 165);
+  --color-accent: oklch(42% 0.11 158);
+  --color-accent-deep: oklch(36% 0.1 158);
+  --color-accent-soft: oklch(90% 0.055 158);
+  --color-accent-ink: oklch(98% 0.008 90);
+  --color-cyan: oklch(46% 0.085 198);
+  --color-cyan-soft: oklch(91% 0.04 195);
+  --color-focus: oklch(42% 0.13 158);
+  --color-alarm: oklch(47% 0.18 26);
+  --color-alarm-soft: oklch(95.5% 0.02 25);
+  --color-alarm-rule: oklch(82% 0.065 25);
+}
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../public/fonts/schibsted-grotesk-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../public/fonts/instrument-sans-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../public/fonts/instrument-sans-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../public/fonts/dm-mono-400.ttf") format("truetype");
+}
