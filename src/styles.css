@@ -76,8 +76,7 @@ body {
   gap: var(--space-xs);
 }
 
-.theme-toggle,
-.audio-toggle {
+.theme-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -98,12 +97,6 @@ body {
     background-color var(--dur-micro) var(--ease-out),
     transform var(--dur-micro) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
-}
-
-.audio-toggle[aria-pressed="true"] {
-  color: var(--color-cyan);
-  border-color: var(--color-cyan);
-  background: var(--color-cyan-soft);
 }
 
 /* Living ASCII Pipeline Diagram */
@@ -1776,7 +1769,6 @@ textarea:focus-visible {
    ========================================================================== */
 
 @media (hover: hover) and (pointer: fine) {
-  .audio-toggle:hover,
   .theme-toggle:hover,
   .quiet:hover,
   .edge-toggle:hover,
@@ -1805,7 +1797,6 @@ textarea:focus-visible {
 .quiet:active,
 .edge-toggle:active,
 .specimen-reset:active,
-.audio-toggle:active,
 .theme-toggle:active,
 .signal-token:active {
   transform: translateY(1px);

@@ -105,31 +105,12 @@ export default function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() =>
     document.documentElement.dataset.theme === "light" ? "light" : "dark",
   );
-  const [audioEnabled, setAudioEnabled] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("observely-audio") === "on";
-    } catch {
-      return false;
-    }
-  });
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.dataset.theme = next;
     localStorage.setItem("observely-theme", next);
-  };
-
-  const toggleAudio = () => {
-    setAudioEnabled((prev) => {
-      const next = !prev;
-      try {
-        localStorage.setItem("observely-audio", next ? "on" : "off");
-      } catch {
-        // Ignore storage errors
-      }
-      return next;
-    });
   };
 
   const message = input.trim();
@@ -236,14 +217,6 @@ export default function App() {
             <div className="masthead-actions">
               <button
                 type="button"
-                className="audio-toggle"
-                aria-pressed={audioEnabled}
-                onClick={toggleAudio}
-              >
-                {audioEnabled ? "Audio ping: On" : "Audio ping: Off"}
-              </button>
-              <button
-                type="button"
                 className="theme-toggle"
                 aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
                 onClick={toggleTheme}
@@ -260,7 +233,6 @@ export default function App() {
               isSettling={isSettling}
               settleDurationMs={DEBOUNCE_MS}
               settleKey={input}
-              audioEnabled={audioEnabled}
             />
           </div>
         </header>

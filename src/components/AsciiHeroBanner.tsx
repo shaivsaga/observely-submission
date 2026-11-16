@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ScanPhase } from "../hooks/useScanChoreography";
 
 export type PipelineMode =
@@ -27,7 +27,6 @@ const PHASE_LABELS: Partial<Record<ScanPhase, string>> = {
 
 const SETTLING_GLYPHS = ["░", "▒", "▓", "▚", "▞"] as const;
 const GLYPH_CYCLE_MS = 150;
-const DATA_PING_MS = 150;
 const DEFAULT_SETTLE_MS = 400;
 
 function getReducedMotionPreference(): boolean {
@@ -36,42 +35,6 @@ function getReducedMotionPreference(): boolean {
     typeof window.matchMedia === "function" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-}
-
-function schedulePingTone(ctx: AudioContext) {
-  try {
-    if (ctx.state !== "running") return;
-
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    // Short, soft ping (880Hz -> 660Hz over 90ms). Laptop and phone speakers
-    // cannot reproduce much below 250Hz, so the pitch sits in the audible range.
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(880, now);
-    osc.frequency.exponentialRampToValueAtTime(660, now + 0.09);
-
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.linearRampToValueAtTime(0.08, now + 0.008);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.11);
-  } catch {
-    // Ignore audio synthesis errors in restricted contexts
-  }
-}
-
-function closeAudioContext(ref: { current: AudioContext | null }) {
-  const ctx = ref.current;
-  ref.current = null;
-  if (ctx && ctx.state !== "closed") {
-    void ctx.close().catch(() => {});
-  }
 }
 
 export function AsciiHeroBanner({
@@ -83,7 +46,6 @@ export function AsciiHeroBanner({
   isSettling,
   settleDurationMs = DEFAULT_SETTLE_MS,
   settleKey,
-  audioEnabled = false,
 }: {
   mode: PipelineMode;
   scanPhase: ScanPhase;
@@ -93,13 +55,11 @@ export function AsciiHeroBanner({
   isSettling?: boolean;
   settleDurationMs?: number;
   settleKey?: string;
-  audioEnabled?: boolean;
 }) {
   const [assembled, setAssembled] = useState(false);
   const [glyph, setGlyph] = useState<string>(SETTLING_GLYPHS[0]);
   const [settlePercent, setSettlePercent] = useState(0);
   const [reducedMotion, setReducedMotion] = useState<boolean>(getReducedMotionPreference);
-  const audioCtxRef = useRef<AudioContext | null>(null);
 
   const settling = isSettling ?? mode === "scanning";
 
@@ -160,64 +120,6 @@ export function AsciiHeroBanner({
     rafId = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(rafId);
   }, [settling, settleDurationMs, settleKey, reducedMotion]);
-
-  useEffect(() => {
-    if (!audioEnabled || reducedMotion) {
-      closeAudioContext(audioCtxRef);
-    }
-  }, [audioEnabled, reducedMotion]);
-
-  useEffect(() => {
-    return () => {
-      closeAudioContext(audioCtxRef);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!settling || !audioEnabled || reducedMotion || typeof window === "undefined") {
-      return;
-    }
-
-    const AudioCtx =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioCtx) return;
-
-    let ctx = audioCtxRef.current;
-    if (!ctx || ctx.state === "closed") {
-      try {
-        ctx = new AudioCtx();
-        audioCtxRef.current = ctx;
-      } catch {
-        return;
-      }
-    }
-
-    let cancelled = false;
-    const ping = () => {
-      if (cancelled || !ctx || ctx.state === "closed") return;
-      if (ctx.state === "suspended") {
-        void ctx
-          .resume()
-          .then(() => {
-            if (!cancelled && ctx && ctx.state === "running") {
-              schedulePingTone(ctx);
-            }
-          })
-          .catch(() => {});
-        return;
-      }
-      schedulePingTone(ctx);
-    };
-
-    ping();
-    const id = window.setInterval(ping, DATA_PING_MS);
-
-    return () => {
-      cancelled = true;
-      window.clearInterval(id);
-    };
-  }, [settling, audioEnabled, reducedMotion]);
 
   const isChoreographing =
     !settling &&
